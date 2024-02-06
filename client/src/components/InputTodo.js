@@ -7,11 +7,14 @@ const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
         const body = {description};
-        const response = await fetch("http://localhost:5000/todos", {
+        const response = await fetch(
+          "http://ec2-18-133-247-174.eu-west-2.compute.amazonaws.com:5000/todos",
+          {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(body)    
-        });
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          }
+        );
         
         console.log(response);
         window.location = "/";

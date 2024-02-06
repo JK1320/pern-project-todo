@@ -10,11 +10,14 @@ const EditTodo = ({todo}) => {
         e.preventDefault();
 try {
     const body = {description};
-    const response = await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+    const response = await fetch(
+      `http://ec2-18-133-247-174.eu-west-2.compute.amazonaws.com:5000/todos/${todo.todo_id}`,
+      {
         method: "PUT",
-        headers: {"content-Type": "application/json"},
-        body: JSON.stringify(body)
-    });
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    );
 console.log(response);
     window.location = "/";
 } catch (error) {
