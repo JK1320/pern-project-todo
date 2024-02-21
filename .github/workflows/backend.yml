@@ -1,0 +1,42 @@
+name: Push to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+      defaults: 
+      run:
+        working-directory: server
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install SSH client
+      run: sudo apt-get install -y openssh-client
+
+    - name: Deploy to EC2
+      run: rsync -avz --exclude 'node_modules' --exclude '.git' --exclude 'database.sql' \
+        -e "ssh -i ~/Documents/ssh/pern-todo.pem" \
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
