@@ -23,5 +23,4 @@ jobs:
             --exclude '.git' \
             --exclude 'database.sql' \
             ./Documents/GitHub/pern-project-todo/server/ ec2-user@ec2-18-133-247-174.eu-west-2.compute.amazonaws.com:/home/ubuntu/app
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      
