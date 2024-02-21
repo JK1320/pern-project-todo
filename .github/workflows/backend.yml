@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      include:
-        - server
+      - server
 
 jobs:
   upload:
