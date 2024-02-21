@@ -1,6 +1,6 @@
 # pern-project-todo
-
-jobs:
+- old code
+<!-- jobs:
   deploy:
     runs-on: ubuntu-latest
     defaults: 
@@ -9,4 +9,9 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2 -->
+
+# had git error
+-  run to find problem => git status
+-  it suggested to run => git branch --unset-upstream
+-  problem solved

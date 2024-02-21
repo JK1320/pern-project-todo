@@ -16,6 +16,9 @@ jobs:
     - name: Install SSH client
       run: sudo apt-get install -y openssh-client
 
+    - name: Debug SSH key path
+      run: echo "SSH private key path: ${{ secrets.SSH_PRIVATE_KEY }}"
+
     - name: Upload to EC2
       run: |
         scp -r -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} \
