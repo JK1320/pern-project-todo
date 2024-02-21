@@ -81,5 +81,5 @@ app.delete("/todos/:id", async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("server has started on port 5000 and testing github actions");
+  console.log("server has started on port 5000 and testing Github Actions");
 });
