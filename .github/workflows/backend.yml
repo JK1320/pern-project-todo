@@ -17,7 +17,7 @@ jobs:
       run: sudo apt-get install -y openssh-client
 
     - name: Debug SSH key path
-      run: echo "SSH private key path: ${{ secrets.SSH_PRIVATE_KEY }}"
+      run: echo "SSH_PRIVATE_KEY path: ${{ secrets.SSH_PRIVATE_KEY }}"
 
     - name: Upload to EC2
       run: |
