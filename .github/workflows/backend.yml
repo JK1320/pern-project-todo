@@ -28,5 +28,8 @@ jobs:
           cd /home/ubuntu/app && \
           git pull origin main && \
           sudo systemctl restart your-backend-service"
+
+    - name: Debug SSH Key
+      run: echo "SSH private key: $SERVER_SSH_KEY"
       env:
         SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
