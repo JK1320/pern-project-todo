@@ -1,25 +1,32 @@
-name: Deploy
+name: Deploy to EC2
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   deploy:
-    name: Deploying Todo Application
     runs-on: ubuntu-latest
     defaults: 
       run:
         working-directory: server
 
     steps:
-      - uses: actions/checkout@v3
-      - name: deploying application to EC2
-        env:
-          PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY  }}
-          HOSTNAME: ${{ secrets.SERVER_HOST  }}
-          USER_NAME: ${{ secrets.SERVER_USERNAME  }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} bash sync.index.js
+    - name: Install SSH client
+      run: sudo apt-get install -y openssh-client
+
+    - name: SSH into EC2 instance
+      run: |
+        scp -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} \
+          --exclude 'node_modules' --exclude '.git' --exclude 'database.sql' \
+          ./Documents/GitHub/pern-project-todo/server/* ec2-user@ec2-18-133-247-174.eu-west-2.compute.amazonaws.com:/home/ubuntu/app
+        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} ec2-user@your-ec2-public-ip "\
+          cd /home/ubuntu/app && \
+          git pull origin main && \
+          sudo systemctl restart your-backend-service"
+      env:
+        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
