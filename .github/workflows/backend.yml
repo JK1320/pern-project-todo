@@ -8,9 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults: 
-      run:
-        working-directory: server
 
     steps:
     - name: Checkout repository
@@ -18,8 +15,6 @@ jobs:
 
     - name: Install SSH client
       run: sudo apt-get install -y openssh-client
-      env:
-        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
 
     - name: SSH into EC2 instance
       run: |
@@ -30,4 +25,6 @@ jobs:
           cd /home/ubuntu/app && \
           git pull origin main && \
           sudo systemctl restart your-backend-service"
+      env:
+        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
       
