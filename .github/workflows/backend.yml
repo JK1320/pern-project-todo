@@ -19,6 +19,9 @@ jobs:
     - name: Install SSH client
       run: sudo apt-get install -y openssh-client
 
+    - name: Debug SSH Key
+      run: echo "SSH private key: $SERVER_SSH_KEY"
+
     - name: SSH into EC2 instance
       run: |
         scp -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} \
@@ -28,8 +31,5 @@ jobs:
           cd /home/ubuntu/app && \
           git pull origin main && \
           sudo systemctl restart your-backend-service"
-
-    - name: Debug SSH Key
-      run: echo "SSH private key: $SERVER_SSH_KEY"
       env:
         SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
