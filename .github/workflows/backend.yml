@@ -18,6 +18,8 @@ jobs:
 
     - name: Install SSH client
       run: sudo apt-get install -y openssh-client
+      env:
+        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
 
     - name: SSH into EC2 instance
       run: |
