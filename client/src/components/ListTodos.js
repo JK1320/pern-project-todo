@@ -53,7 +53,7 @@ const ListTodos = () => {
         <tbody>
           {todos.map((todo) => (
             <tr key={todo.todo_id}>
-              <td>{todo.description}</td>
+              <td class="font-weight-bold">{todo.description}</td>
               <td>
                 <EditTodo todo={todo} />
               </td>
