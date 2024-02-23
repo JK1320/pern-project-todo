@@ -2,7 +2,7 @@ name: DEPLOY TO EC2 - GITHUB ACTIONS
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
