@@ -16,7 +16,7 @@ jobs:
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
-        switches: -avzr --delete --include={"db.js", "index.js", "package-lock.json", "package.json"} --exclude={"client", "node_modules", ".git", "database.sql"}
+        switches: -avzr --delete --exclude="client" --exclude="node_modules" --exclude=".git" --exclude="database.sql"
         path: pern-project-todo/server
         remote_path: /home/ubuntu/app
         remote_host: ${{ secrets.SERVER_HOST }}
