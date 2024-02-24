@@ -7,16 +7,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults: 
-      run:
-        working-directory: server
 
     steps:
     - uses: actions/checkout@v2
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
-        switches: -avzr --delete --exclude="client" --exclude="node_modules" --exclude=".git" --exclude="database.sql"
+        switches: -avzr --delete --exclude="node_modules" --exclude=".git" --exclude="database.sql"
         path: ./server/
         remote_path: /home/ubuntu/app
         remote_host: ${{ secrets.SERVER_HOST }}
